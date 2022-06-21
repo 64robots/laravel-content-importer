@@ -56,7 +56,7 @@ class ImportFilesCommand extends Command
                     $extension = strtolower(Arr::last(explode('.', $file)));
 
                     $availableExtensions = str_replace('.', '', config('content_import.extensions'));
-                    $availableExtensions = array_map(fn ($extension) => strtolower($extension), $availableExtensions);
+                    $availableExtensions = array_map(fn ($extension) => strtolower($extension), [$availableExtensions]);
 
                     return !in_array($extension, $availableExtensions);
             })->each(fn($file) => $this->saveImportedFile($file)));
